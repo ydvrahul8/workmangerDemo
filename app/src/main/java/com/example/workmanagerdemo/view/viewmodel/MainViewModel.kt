@@ -27,25 +27,6 @@ class MainViewModel(private val repository: DateTimeRepository) : ViewModel() {
         }
     }
 
-    fun update(dateTimeData: DateTimeData) {
-        viewModelScope.launch {
-            val noOfRows = repository.update(dateTimeData)
-            if (noOfRows > 0) {
-                statusMessage.value = Event("$noOfRows Rows Updated Successfully.")
-            } else
-                statusMessage.value = Event("Error Occurred.")
-        }
-    }
-
-    fun delete(dateTimeData: DateTimeData) {
-        viewModelScope.launch {
-            val noOfRowsDeleted = repository.delete(dateTimeData)
-            if (noOfRowsDeleted > 0) {
-                statusMessage.value = Event("$noOfRowsDeleted rows Deleted Successfully.")
-            } else
-                statusMessage.value = Event("Error Occurred.")
-        }
-    }
 
     fun clearAll() {
         viewModelScope.launch {
